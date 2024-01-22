@@ -1,7 +1,13 @@
 window.onload = () => {
   const button = document.querySelector("button");
 
-  const container = document.querySelector(".w3-card-4").parentElement;
+  //const container1 = document.querySelector(".w3-card-4").parentElement;
+
+  //console.log(container1);
+
+  const containers = document.querySelectorAll(".w3-container");
+  const container = containers[1];
+  console.log(container);
 
   //funcion que se lanza cuando se hace click en el boton para añadir un producto
   button.addEventListener("click", (event) => {
