@@ -1,47 +1,47 @@
 window.onload = () => {
   const button = document.querySelector("button");
 
-  // Load existing products from localStorage on page load
+  // Carregar productes existents des del localStorage en carregar la pàgina
   let products = JSON.parse(localStorage.getItem("products")) || [];
 
   const containers = document.querySelectorAll(".w3-container");
   const container = containers[1];
 
-  // Function to save products to localStorage
+  // Funció per desar els productes al localStorage
   function saveProducts() {
     localStorage.setItem("products", JSON.stringify(products));
   }
 
-  // Display existing products on page load
+  // Mostrar els productes existents en carregar la pàgina
   products.forEach((product) => {
     renderProduct(product);
   });
 
-  // Add event listener to the button
+  // Afegir escoltador d'esdeveniments al botó
   button.addEventListener("click", () => {
     var productInfo = document.querySelectorAll("input");
     var producte = productInfo[0].value;
     var quantitat = productInfo[1].value;
     var marca = productInfo[2].value;
 
-    // Create product object
+    // Crear objecte de producte
     const newProduct = {
       producte,
       quantitat,
       marca,
     };
 
-    // Add new product to the array of products
+    // Afegir nou producte a l'array de productes
     products.push(newProduct);
 
-    // Save products to localStorage
+    // Desar productes al localStorage
     saveProducts();
 
-    // Render the new product
+    // Renderitzar el nou producte
     renderProduct(newProduct);
   });
 
-  // Function to render product HTML
+  // Funció per renderitzar l'HTML del producte
   function renderProduct(product) {
     var text = `
       <div class="w3-padding w3-xlarge">
@@ -65,6 +65,7 @@ window.onload = () => {
   }
 };
 
+// Funció per mostrar la informació d'un producte
 function infoProduct(info) {
   const attributes = info.parentElement.previousElementSibling;
   var nomProducte = attributes.innerHTML;
@@ -74,6 +75,7 @@ function infoProduct(info) {
   alert(nomProducte + "\n" + quantitat + " unitats. \nMarca: " + marca);
 }
 
+// Funció per moure un producte cap amunt
 function upProduct(moveUp) {
   var productToMoveUp = moveUp.parentElement.parentElement.parentElement;
   var potentialBrother = productToMoveUp.previousElementSibling;
@@ -82,6 +84,7 @@ function upProduct(moveUp) {
   }
 }
 
+// Funció per moure un producte cap avall
 function downProduct(moveDown) {
   var productToMoveDown = moveDown.parentElement.parentElement.parentElement;
   var potentialBrother = productToMoveDown.nextElementSibling;
@@ -90,6 +93,7 @@ function downProduct(moveDown) {
   }
 }
 
+// Funció per esborrar un producte
 function deleteProduct(deleteProduct) {
   var productToDelete = deleteProduct.parentElement.parentElement.parentElement;
   productToDelete.remove();
